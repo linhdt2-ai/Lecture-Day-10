@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ đồ quy trình Data Pipeline - Lab 10</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sơ đồ Data Pipeline - Lab 10</h1>
+        <div class="mermaid">
+flowchart TD
+    subgraph Ingest
+        A[("Raw Data CSV")]
+    end
+
+    subgraph Cleaning_Rules
+        A --> B{"Kiểm tra ALLOWED_DOC_IDS\n[MỚI] Thêm: access_control_sop"}
+        B -- "Tài liệu lạ" --> Q[/"Quarantine File"/]
+        B -- "Tài liệu hợp lệ" --> C{"Kiểm tra chữ 'Nội dung không rõ ràng:'\n[MỚI] Rule 2"}
+        
+        C -- "Có chứa" --> Q
+        C -- "Không chứa" --> D["Chuẩn hóa ngày & Loại bỏ trùng lặp"]
+        
+        D --> E["Sửa lỗi Policy Hoàn tiền\n14 ngày -> 7 ngày"]
+        E --> F["Sửa lỗi HR Policy\n[MỚI] Rule 1: 10 ngày -> 12 ngày"]
+        F --> G["Xóa ký tự rác '!!!'\n[MỚI] Rule 3"]
+        G --> H[("Cleaned CSV")]
+    end
+
+    subgraph Quality
+        H --> I{"Chạy Expectations Suite"}
+        
+        I -->|"[MỚI] E7: no_unclear_content"| J{"Còn sót 'Nội dung không rõ ràng:'?"}
+        I -->|"[MỚI] E8: no_exclamation_marks"| K{"Còn sót '!!!'?"}
+        
+        J -- "Phát hiện lỗi" --> HALT(("PIPELINE HALT"))
+        K -- "Phát hiện lỗi" --> HALT
+        
+        J -- "Pass (Sạch)" --> L["Vector Database / Chroma"]
+        K -- "Pass (Sạch)" --> L
+    end
+    
+    style B fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
+    style C fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
+    style F fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
+    style G fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
+    style J fill:#fce4ec,stroke:#e91e63,stroke-width:2px
+    style K fill:#fce4ec,stroke:#e91e63,stroke-width:2px
+    style HALT fill:#f44336,color:#fff,stroke-width:0px
+        </div>
+    </div>
+
+    <!-- Tải Mermaid.js từ CDN để render graph -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>
