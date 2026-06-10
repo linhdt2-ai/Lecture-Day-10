@@ -48,13 +48,20 @@ flowchart TD
         K -- "Pass (Sạch)" --> L
     end
     
-    style B fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
-    style C fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
-    style F fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
-    style G fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px
-    style J fill:#fce4ec,stroke:#e91e63,stroke-width:2px
-    style K fill:#fce4ec,stroke:#e91e63,stroke-width:2px
-    style HALT fill:#f44336,color:#fff,stroke-width:0px
+    style A fill:#f0f4f8,stroke:#b0bec5,stroke-width:2px,color:#102a43
+    style B fill:#e0f2f1,stroke:#4db6ac,stroke-width:2px,color:#004d40
+    style C fill:#e0f2f1,stroke:#4db6ac,stroke-width:2px,color:#004d40
+    style D fill:#f5f5f5,stroke:#cccccc,stroke-width:2px,color:#333333
+    style E fill:#f5f5f5,stroke:#cccccc,stroke-width:2px,color:#333333
+    style F fill:#e0f2f1,stroke:#4db6ac,stroke-width:2px,color:#004d40
+    style G fill:#e0f2f1,stroke:#4db6ac,stroke-width:2px,color:#004d40
+    style Q fill:#fff3e0,stroke:#ffb74d,stroke-width:2px,color:#e65100
+    style H fill:#e8f5e9,stroke:#81c784,stroke-width:2px,color:#1b5e20
+    style I fill:#e3f2fd,stroke:#64b5f6,stroke-width:2px,color:#0d47a1
+    style J fill:#ffebee,stroke:#e57373,stroke-width:2px,color:#b71c1c
+    style K fill:#ffebee,stroke:#e57373,stroke-width:2px,color:#b71c1c
+    style HALT fill:#ffcdd2,stroke:#e53935,stroke-width:2px,color:#b71c1c
+    style L fill:#e8f5e9,stroke:#81c784,stroke-width:2px,color:#1b5e20
 ```
 
 ---
