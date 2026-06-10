@@ -1,0 +1,14 @@
+{
+  "run_id": "2026-06-10T08-36Z",
+  "run_timestamp": "2026-06-10T08:36:14.915500+00:00",
+  "raw_path": "data/raw/policy_export_dirty.csv",
+  "raw_records": 247,
+  "cleaned_records": 39,
+  "quarantine_records": 208,
+  "latest_exported_at": "2026-04-11T00:00:00",
+  "no_refund_fix": false,
+  "skipped_validate": false,
+  "cleaned_csv": "artifacts/cleaned/cleaned_2026-06-10T08-36Z.csv",
+  "chroma_path": "./chroma_db",
+  "chroma_collection": "day10_kb"
+}

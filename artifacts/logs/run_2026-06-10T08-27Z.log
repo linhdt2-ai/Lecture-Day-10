@@ -1,0 +1,18 @@
+run_id=2026-06-10T08-27Z
+raw_records=247
+cleaned_records=39
+quarantine_records=208
+cleaned_csv=artifacts/cleaned/cleaned_2026-06-10T08-27Z.csv
+quarantine_csv=artifacts/quarantine/quarantine_2026-06-10T08-27Z.csv
+expectation[min_one_row] OK (halt) :: cleaned_rows=39
+expectation[no_empty_doc_id] OK (halt) :: empty_doc_id_count=0
+expectation[refund_no_stale_14d_window] OK (halt) :: violations=0
+expectation[chunk_min_length_8] OK (warn) :: short_chunks=0
+expectation[effective_date_iso_yyyy_mm_dd] OK (halt) :: non_iso_rows=0
+expectation[hr_leave_no_stale_10d_annual] OK (halt) :: violations=0
+expectation[no_unclear_content] OK (halt) :: violations=0
+expectation[no_exclamation_marks] OK (halt) :: violations=0
+embed_upsert count=39 collection=day10_kb
+manifest_written=artifacts/manifests/manifest_2026-06-10T08-27Z.json
+freshness_check=FAIL {"latest_exported_at": "2026-04-11T00:00:00", "age_hours": 1448.462, "sla_hours": 24.0, "reason": "freshness_sla_exceeded"}
+PIPELINE_OK

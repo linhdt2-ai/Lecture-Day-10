@@ -1,0 +1,6 @@
+.tmp/
+.venv/
+.DS_Store
+node_modules/
+chroma_db/
+.codegraph/
